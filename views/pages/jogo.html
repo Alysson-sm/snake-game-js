@@ -1,43 +1,38 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <link rel="stylesheet" type="text/css" href="/snake-game-js/views/pages/visualbotoes.css" />
+</head>
+
 <body onKeyDown="pegadirecao(event.keyCode);">
 
-    <style>
-        .botoesdeconfig {
 
-            border: none;
-            color: rgb(12, 7, 7);
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-        }
-        .botoes{
-            margin: 0px 0px 0px 425px;
- 
-        }
-    </style>
 
 
     <h2 align="center"> Alysson|SnakeGame|</h2>
-   <div class="botoes">
-    <ul>
-        <button class="botoesdeconfig" type="button" onclick="reiniciarjogo()">Reiniciar</button>
-        <button class="botoesdeconfig" type="button"> Dificuldade</button>
-        <button class="botoesdeconfig" type="button"> Convidar</button>
-       
-       </ul>
-   </div>
+    <div class="botoes">
+        <ul>
+            <button class="botoesdeconfig" type="button" onclick="reiniciarjogo()">Reiniciar</button>
+            <button class="botoesdeconfig" type="button"> Dificuldade</button>
+            <button class="botoesdeconfig" type="button"> Convidar</button>
+            <p id="pontos">Pontuação:</p>
+        </ul>
+
+    </div>
+
+
 
     <div id=principal></div>
+
     <script>
+        let pontos = 0;
+
         tabuleiro = "<table align=center border=1>";
         for (x = 0; x < 10; x++) {
             tabuleiro += "<tr>";
             for (y = 0; y < 10; y++)
-                tabuleiro += "<td id=td" + x + "_" + y + " style='width:30px; height:30px;'> </td>";
+                tabuleiro += "<td id=td" + x + "_" + y + " style='width:40px; height:40px;'> </td>";
             tabuleiro += "</tr>";
         }
         document.getElementById('principal').innerHTML = tabuleiro + "</table>";
@@ -52,6 +47,13 @@
                 mx = parseInt(Math.random() * 10);
                 my = parseInt(Math.random() * 10);
                 cobra[cobra.length] = [10, 10];
+
+                pontos = pontos + 10;
+                document.getElementById('pontos').innerHTML = 'Pontuação: ' + pontos;
+                if (pontos >= 500) {
+                    document.getElementById('pontos').innerHTML = 'Pontuação: ' + pontos + ' Voce é uma lenda';
+                }
+
             }
             for (x = cobra.length - 1; x > 0; x--) {
                 cobra[x][0] = cobra[x - 1][0];
