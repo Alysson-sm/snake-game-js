@@ -14,25 +14,30 @@
     <div class="botoes">
         <ul>
             <button class="botoesdeconfig" type="button" onclick="reiniciarjogo()">Reiniciar</button>
-            <button class="botoesdeconfig" type="button"> Dificuldade</button>
-            <button class="botoesdeconfig" type="button"> Convidar</button>
-            <p id="pontos">Pontuação:</p>
+            <button class="botoesdeconfig" id="botaodificuldade" type="button" onclick=" nivel() ">Dificuldade: Facil</button>
+            
+            <div class="fb-share-button" data-href="https://secret-spire-33091.herokuapp.com/" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsecret-spire-33091.herokuapp.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartilhar</a></div>
+
+            <h3 id="pontos">Pontuação:</h3>
         </ul>
 
     </div>
 
-
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v11.0" nonce="4Qz1ng6w"></script>
 
     <div id=principal></div>
 
     <script>
         let pontos = 0;
-
+        let dificuldade = 300;
+        
+        
         tabuleiro = "<table align=center border=1>";
         for (x = 0; x < 10; x++) {
             tabuleiro += "<tr>";
             for (y = 0; y < 10; y++)
-                tabuleiro += "<td id=td" + x + "_" + y + " style='width:40px; height:40px;'> </td>";
+                tabuleiro += "<td id=td" + x + "_" + y + " style='width:35px; height:35px;'> </td>";
             tabuleiro += "</tr>";
         }
         document.getElementById('principal').innerHTML = tabuleiro + "</table>";
@@ -41,8 +46,10 @@
         mx = parseInt(Math.random() * 10);
         my = parseInt(Math.random() * 10);
         vivo = true;
+        
         function anda() {
             document.getElementById('td' + cobra[cobra.length - 1][0] + '_' + cobra[cobra.length - 1][1]).style.background = "#ffffff";
+    
             if (mx == cobra[cobra.length - 1][0] && my == cobra[cobra.length - 1][1]) {
                 mx = parseInt(Math.random() * 10);
                 my = parseInt(Math.random() * 10);
@@ -66,9 +73,10 @@
             for (x = 1; x < cobra.length; x++)if (cobra[0][0] == cobra[x][0] && cobra[0][1] == cobra[x][1]) vivo = false;
             if (cobra[0][0] < 0 || cobra[0][1] < 0 || cobra[0][0] > 9 || cobra[0][1] > 9) vivo = false;
             document.getElementById('td' + cobra[0][0] + '_' + cobra[0][1]).style.background = "#333333";
-            document.getElementById('td' + mx + '_' + my).style.background = "#ff3333";
-            if (vivo) setTimeout('anda()', 300);
+            document.getElementById('td' + mx + '_' + my).style.background = "#0927eb";
+            if (vivo) setTimeout('anda()', dificuldade);
             else alert('Fim de jogo');
+            console.log(dificuldade)
         }
         anda();
         function pegadirecao(tecla) {
@@ -80,6 +88,10 @@
         }
         function reiniciarjogo() {
             document.location.reload(true)
+        }
+        function nivel() {
+            dificuldade = 250;
+            document.getElementById('botaodificuldade').textContent = 'Dificuldade: Dificil'
         }
     </script>
 </body>

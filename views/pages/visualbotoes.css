@@ -2,13 +2,13 @@
 .botoesdeconfig {
 
     border: none;
-    color: rgb(141, 15, 199);
+    color: rgb(236, 229, 226);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    background-color: rgb(247, 241, 241);
+    background-color: rgba(0, 0, 0, 0.863);
 }
 .botoes{
     margin: 0px 0px 0px 425px;
@@ -16,7 +16,7 @@
 }
 
 #pontos{
-    color:rgb(141, 15, 199);
+    color:rgb(0, 0, 0);
 }
 
 
